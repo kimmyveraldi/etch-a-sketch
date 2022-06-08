@@ -4,8 +4,10 @@ let gridSize = DEFAULT_SIZE;
 let color = DEFAULT_COLOR;
 
 const sliderValue = document.getElementById('size-slider');
+const eraser = document.getElementById('eraser');
 
 sliderValue.onchange = (e) => createGrid(e.target.value);
+eraser.onclick = () => color = 'white';
 
 function createGrid(gridSize) {
     while (grid.firstChild) {
@@ -26,9 +28,12 @@ function createGrid(gridSize) {
 createGrid(gridSize);
 
 function main(e) {
-    let r = Math.floor(Math.random()*(255 +1));
-    let g = Math.floor(Math.random()*(255 +1));
-    let b = Math.floor(Math.random()*(255 +1));
-    e.target.style.backgroundColor = `rgb(${r},${g},${b})`;
+    e.target.style.backgroundColor = color;
+
+
+    // let r = Math.floor(Math.random()*(255 +1));
+    // let g = Math.floor(Math.random()*(255 +1));
+    // let b = Math.floor(Math.random()*(255 +1));
+    // e.target.style.backgroundColor = `rgb(${r},${g},${b})`;
 }
 
