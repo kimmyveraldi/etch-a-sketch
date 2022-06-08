@@ -1,16 +1,34 @@
-const grid = document. querySelector('#grid');
-const controls = document.querySelector('#controls');
+const DEFAULT_SIZE = 16;
+const DEFAULT_COLOR = 'black';
+let gridSize = DEFAULT_SIZE;
+let color = DEFAULT_COLOR;
 
+const sliderValue = document.getElementById('size-slider');
 
-function createGrid() {
-    grid.style.gridTemplateColumns = `repeat(16, 1fr)`
-    grid.style.gridTemplateRows = `repeat(16, 1fr)`
-  
-    for (let i = 0; i < 256; i++) {
-      const square = document.createElement('div')
-      square.classList.add('grid-element')
-      grid.appendChild(square)
+sliderValue.onchange = (e) => createGrid(e.target.value);
+
+function createGrid(gridSize) {
+    while (grid.firstChild) {
+        grid.removeChild(grid.firstChild);
     }
-  }
+    for (let i = 0; i < (gridSize * gridSize); i++) {
+        const square = document.createElement('div')
+        square.classList.add('grid-element')
+        square.addEventListener('mouseover', main)
+        grid.appendChild(square)
+    }
+    grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`
+    grid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`
+    const sliderText = document.getElementById('slide-text');
+    sliderText.textContent = (`${gridSize} x ${gridSize}`)
+}
 
-  createGrid()
+createGrid(gridSize);
+
+function main(e) {
+    let r = Math.floor(Math.random()*(255 +1));
+    let g = Math.floor(Math.random()*(255 +1));
+    let b = Math.floor(Math.random()*(255 +1));
+    e.target.style.backgroundColor = `rgb(${r},${g},${b})`;
+}
+
