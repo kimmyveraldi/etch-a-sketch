@@ -39,7 +39,10 @@ function main(e) {
         e.target.style.backgroundColor = 'white';
     }
     if (color == 'multi') {
-        e.target.style.backgroundColor = 'red';
+        r = Math.floor(Math.random()*(255 +1));
+        g = Math.floor(Math.random()*(255 +1));
+        b = Math.floor(Math.random()*(255 +1));
+        e.target.style.backgroundColor = `rgb(${r},${g},${b})`;
     }
 }
 
