@@ -4,10 +4,14 @@ let gridSize = DEFAULT_SIZE;
 let color = DEFAULT_COLOR;
 
 const sliderValue = document.getElementById('size-slider');
+const black = document.getElementById('black');
 const eraser = document.getElementById('eraser');
+const multi = document.getElementById('multi');
 
 sliderValue.onchange = (e) => createGrid(e.target.value);
-eraser.onclick = () => color = 'white';
+black.onclick = () => color = 'black';
+eraser.onclick = () => color = 'eraser';
+multi.onclick = () => color = 'multi';
 
 function createGrid(gridSize) {
     while (grid.firstChild) {
@@ -28,12 +32,14 @@ function createGrid(gridSize) {
 createGrid(gridSize);
 
 function main(e) {
-    e.target.style.backgroundColor = color;
-
-
-    // let r = Math.floor(Math.random()*(255 +1));
-    // let g = Math.floor(Math.random()*(255 +1));
-    // let b = Math.floor(Math.random()*(255 +1));
-    // e.target.style.backgroundColor = `rgb(${r},${g},${b})`;
+    if (color == 'black') {
+        e.target.style.backgroundColor = 'black';
+    }
+    if (color == 'eraser') {
+        e.target.style.backgroundColor = 'white';
+    }
+    if (color == 'multi') {
+        e.target.style.backgroundColor = 'red';
+    }
 }
 
